@@ -320,8 +320,35 @@ elif [[ $1 == "power" ]]; then
 
 	fi
 
+elif [[ $1 == "play" ]]; then
+	if [[ $2 == "roll" ]]; then
+	. ~/luna/roll.sh
+	elif [[ $2 == "rulette" ]]; then
+	. ~/luna/games/rulette.sh
+	elif [[ $2 == "russianrulette" ]]; then
+	. ~/luna/games/russianrulette.sh
+	elif [[ $2 == "tictactoe" ]]; then
+	. ~/luna/games/tictactoe.sh
+	else
+		if [[ -e ~/luna/games/russianrulette.sh ]]; then
+			RR=" | russianrulette"
+		else
+			RR=""
+		fi
+		if [[ -e ~/luna/games/rulette.sh ]]; then
+			R=" | rulette"
+		else
+			R=""
+		fi
+		if [[ -e ~/luna/games/tictactoe.sh ]]; then
+			TTT=" | tictactoe"
+		else
+			TTT=""
+		fi
+		echo "Użycie: luna play roll$RR$R$TTT"
+	fi
 else
 
-echo "Użycie: luna Hej! | myname | goto | run | open | app | power"
+echo "Użycie: luna Hej! | myname | goto | run | open | app | power | play"
 
 fi
